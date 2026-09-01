@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<title>Milk Round</title>
+<title>Milkman</title>
 
 <!-- iOS install / standalone behavior -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Milk Round">
+<meta name="apple-mobile-web-app-title" content="Milkman">
 <meta name="theme-color" content="#12203D">
 <link rel="apple-touch-icon" href="data:image/png;base64,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">
 <link rel="icon" href="data:image/png;base64,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">
@@ -31,6 +31,21 @@
     padding:26px 22px 22px; position:relative; overflow:hidden;}
   .hero::before{content:"";position:absolute;top:-60px;right:-40px;width:180px;height:180px;
     border-radius:50%;background:radial-gradient(circle, rgba(198,146,44,0.18) 0%, transparent 70%);}
+  .account-row{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .accountbtn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:999px;
+    padding:5px 12px;cursor:pointer;max-width:150px;}
+  .accountbtn span{font-size:10.5px;color:#B9C3DA;font-family:'Inter',sans-serif;font-weight:600;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;}
+  .authgate{position:fixed;inset:0;z-index:100;background:linear-gradient(165deg,#101B34 0%,#16264A 55%,#223761 100%);
+    display:none;align-items:center;justify-content:center;padding:24px;}
+  .authgate.show{display:flex;}
+  .authgate-inner{max-width:320px;text-align:center;}
+  .authgate-icon{margin-bottom:18px;display:flex;justify-content:center;}
+  .authgate-title{font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#FBF8F0;margin-bottom:10px;}
+  .authgate-status{font-size:13px;color:#B9C3DA;margin-bottom:26px;line-height:1.5;}
+  .signinbtn{display:flex;align-items:center;justify-content:center;gap:10px;background:#FFFFFF;
+    border:none;border-radius:12px;padding:13px 20px;cursor:pointer;width:100%;font-family:'Inter',sans-serif;
+    font-size:14px;font-weight:600;color:#1B2233;}
   .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#8FA1C4;
     text-transform:uppercase;margin-bottom:4px;}
   .title{font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#FBF8F0;}
@@ -85,26 +100,54 @@
   .sheet-date{font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--ink);}
   .closebtn{border:none;background:#F3F5F8;border-radius:999px;width:30px;height:30px;
     display:flex;align-items:center;justify-content:center;cursor:pointer;}
-  .pickers{display:flex;gap:18px;}
-  .picker{flex:1;min-width:0;}
+  .pickers{display:flex;flex-direction:column;gap:22px;}
+  .picker{width:100%;}
   .picker-label{display:flex;align-items:center;gap:6px;margin-bottom:10px;}
   .picker-label span{font-size:12.5px;font-weight:600;color:#6B7280;letter-spacing:0.3px;text-transform:uppercase;}
-  .divider{width:1px;background:#EEF0F3;}
+  .totaltag{margin-left:auto !important;font-family:'IBM Plex Mono',monospace;font-size:12px !important;
+    color:var(--ink) !important;font-weight:700 !important;text-transform:none !important;letter-spacing:0 !important;}
+  .divider{height:1px;background:#EEF0F3;}
   .levels{display:flex;gap:6px;justify-content:space-between;}
-  .levelbtn{flex:1;border:none;cursor:pointer;background:transparent;display:flex;flex-direction:column;
+  .levelbtn{flex:1;min-width:0;border:none;cursor:pointer;background:transparent;display:flex;flex-direction:column;
     align-items:center;gap:4px;padding:6px 2px;border-radius:12px;}
-  .levelbtn svg{transition:transform 320ms cubic-bezier(.34,1.56,.64,1);}
+  .levelbtn svg{width:100%;max-width:48px;height:auto;display:block;
+    transition:transform 320ms cubic-bezier(.34,1.56,.64,1);}
   .levelbtn.selected svg{transform:scale(1.08) translateY(-2px);}
-  .levelbtn.faint svg{opacity:0.35;}
   .levellabel{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#9AA5B5;font-weight:500;}
   .levellabel.selected{color:var(--ink);font-weight:700;}
-  .noneicon{width:44px;height:76px;display:flex;align-items:center;justify-content:center;
+  .noneicon{width:100%;max-width:48px;aspect-ratio:60/104;display:flex;align-items:center;justify-content:center;
     border:1.5px dashed #DDE1E8;border-radius:10px;}
   .noneicon.selected{border-color:#9AA5B5;}
 
-  .exportbtn{width:100%;margin-top:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
-    border-radius:12px;padding:11px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;}
-  .exportbtn span{font-size:13px;font-weight:600;color:#EDEFF3;font-family:'Inter',sans-serif;}
+  .histbtn{background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;}
+  .histrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #F0F1F4;}
+  .histrow:last-child{border-bottom:none;}
+  .histdate{flex:1;font-size:13px;color:var(--ink);font-weight:500;}
+  .histprice{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--ink);}
+  .histdel{border:none;background:#F3F5F8;color:#9AA5B5;width:22px;height:22px;border-radius:999px;
+    font-size:15px;cursor:pointer;line-height:1;}
+  .histform{margin-top:14px;padding-top:14px;border-top:1px solid #EEF0F3;}
+  .histform-row{display:flex;gap:8px;margin-bottom:10px;}
+  .histinput{border:1px solid #E3E6EB;border-radius:10px;padding:9px 10px;font-size:13px;
+    font-family:'Inter',sans-serif;color:var(--ink);background:#FAFBFC;flex:1;min-width:0;}
+  .histpriceinput{display:flex;align-items:center;gap:4px;flex:1;border:1px solid #E3E6EB;border-radius:10px;
+    padding:0 10px;background:#FAFBFC;}
+  .histpriceinput span{font-size:13px;color:#9AA5B5;}
+  .histpriceinput input{border:none;background:none;padding:9px 0;font-family:'IBM Plex Mono',monospace;
+    font-size:13px;width:100%;color:var(--ink);}
+  .histaddbtn{width:100%;background:var(--navy);color:#FBF8F0;border:none;border-radius:10px;
+    padding:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+
+  .payment-row{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);}
+  .paymentbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:7px;padding:9px;
+    border-radius:10px;cursor:pointer;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;border:1px solid;}
+  .paymentbtn.unpaid{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.14);color:#B9C3DA;}
+  .paymentbtn.paid{background:rgba(76,140,107,0.16);border-color:rgba(76,140,107,0.4);color:#8FD9AE;}
+
+  .exportrow{display:flex;gap:8px;margin-top:10px;}
+  .exportbtn{flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
+    border-radius:12px;padding:11px 6px;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;}
+  .exportbtn span{font-size:12.5px;font-weight:600;color:#EDEFF3;font-family:'Inter',sans-serif;}
   .exportbtn:active{background:rgba(255,255,255,0.14);}
   .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);
     background:#16264A;color:#FBF8F0;padding:10px 18px;border-radius:999px;font-size:13px;font-weight:500;
@@ -121,9 +164,28 @@
 <body>
 <div id="app">
 
+  <div class="authgate" id="authGate">
+    <div class="authgate-inner">
+      <div class="authgate-icon">
+        <svg width="30" height="30" viewBox="0 0 60 104"><path d="M20 32 L20 22 Q20 18 24 18 L36 18 Q40 18 40 22 L40 32 Q48 36 48 46 L48 88 Q48 94 42 94 L18 94 Q12 94 12 88 L12 46 Q12 36 20 32 Z" fill="#FBF8F0" stroke="#3A4A6B" stroke-width="1.5"/><rect x="18" y="10" width="24" height="10" rx="3" fill="#C6922C"/></svg>
+      </div>
+      <div class="authgate-title">Milkman</div>
+      <div class="authgate-status" id="authStatus">Sign in to sync your milk log across devices.</div>
+      <button id="signInBtn" class="signinbtn">
+        <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.5 5.5 29.6 3.5 24 3.5 12.7 3.5 3.5 12.7 3.5 24S12.7 44.5 24 44.5 44.5 35.3 44.5 24c0-1.2-.1-2.4-.3-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.5 6.5 29.6 4.5 24 4.5 15.9 4.5 8.9 9 6.3 14.7z"/><path fill="#4CAF50" d="M24 44.5c5.5 0 10.4-1.9 14.1-5.1l-6.5-5.5C29.6 35.5 26.9 36.5 24 36.5c-5.3 0-9.7-3.1-11.3-7.5l-6.6 5.1C9 39.9 16 44.5 24 44.5z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.7l6.5 5.5C39.9 37.4 44.5 31.5 44.5 24c0-1.2-.1-2.4-.3-3.5z"/></svg>
+        <span>Sign in with Google</span>
+      </button>
+    </div>
+  </div>
+
   <div class="hero">
-    <div class="eyebrow">The Milk Round</div>
-    <div class="title">Your doorstep ledger</div>
+    <div class="account-row">
+      <div class="eyebrow">Milkman</div>
+      <button id="signOutBtn" class="accountbtn" title="Signed in">
+        <span id="authUserName"></span>
+      </button>
+    </div>
+    <div class="title">Milk Tracker</div>
 
     <div class="monthnav">
       <button class="navbtn" id="prevMonth">&#8249;</button>
@@ -146,6 +208,9 @@
         <div class="chip"><span class="dot" style="background:#C6922C"></span><span id="morningAmt">0.0 L</span></div>
         <div class="chip"><span class="dot" style="background:#8FA6D6"></span><span id="nightAmt">0.0 L</span></div>
         <div class="spacer"></div>
+        <button id="priceHistBtn" class="histbtn" title="Price history">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8FA1C4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+        </button>
         <div id="priceStatic" class="priceedit"><span style="font-size:12px;color:#B9C3DA;font-family:'IBM Plex Mono',monospace" id="priceLabel">&#8377;60/L</span></div>
         <div id="priceEditing" style="display:none;align-items:center;gap:4px;">
           <span style="font-size:12px;color:#8FA1C4;">&#8377;</span>
@@ -153,12 +218,21 @@
           <span style="font-size:11px;color:#8FA1C4;">/L</span>
         </div>
       </div>
+      <div class="payment-row">
+        <button id="paymentBtn" class="paymentbtn unpaid"></button>
+      </div>
     </div>
 
-    <button id="exportBtn" class="exportbtn">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDEFF3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      <span>Export to Excel</span>
-    </button>
+    <div class="exportrow">
+      <button id="exportBtn" class="exportbtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDEFF3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Excel</span>
+      </button>
+      <button id="calendarBtn" class="exportbtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDEFF3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Calendar</span>
+      </button>
+    </div>
   </div>
 
   <div class="install-hint" id="installHint">
@@ -182,14 +256,34 @@
     </div>
     <div class="pickers">
       <div class="picker">
-        <div class="picker-label">&#9728;&#65039;<span>Morning</span></div>
+        <div class="picker-label">&#9728;&#65039;<span>Morning</span><span class="totaltag" id="morningTotalTag"></span></div>
         <div class="levels" id="morningLevels"></div>
       </div>
       <div class="divider"></div>
       <div class="picker">
-        <div class="picker-label">&#127769;<span>Night</span></div>
+        <div class="picker-label">&#127769;<span>Night</span><span class="totaltag" id="nightTotalTag"></span></div>
         <div class="levels" id="nightLevels"></div>
       </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="histOverlay"></div>
+  <div class="sheet" id="histSheet">
+    <div class="handle"></div>
+    <div class="sheet-head">
+      <span class="sheet-date">Price History</span>
+      <button class="closebtn" id="histClose">&#10003;</button>
+    </div>
+    <div id="histList"></div>
+    <div class="histform">
+      <div class="histform-row">
+        <input type="date" id="histDateInput" class="histinput">
+        <div class="histpriceinput">
+          <span>&#8377;</span>
+          <input id="histPriceInput" inputmode="decimal" placeholder="0" class="histinput">
+        </div>
+      </div>
+      <button id="histAddBtn" class="histaddbtn">Save price change</button>
     </div>
   </div>
 
@@ -210,37 +304,113 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
 
 </script>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, onSnapshot, enableIndexedDbPersistence } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// ---- PASTE YOUR FIREBASE CONFIG HERE (from Firebase Console > Project Settings) ----
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_API_KEY",
+  authDomain: "PASTE_YOUR_AUTH_DOMAIN",
+  projectId: "PASTE_YOUR_PROJECT_ID",
+  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_YOUR_SENDER_ID",
+  appId: "PASTE_YOUR_APP_ID"
+};
+const firebaseConfigured = firebaseConfig.apiKey.indexOf("PASTE_") !== 0;
+
+let fbApp, auth, db;
+if(firebaseConfigured){
+  fbApp = initializeApp(firebaseConfig);
+  auth = getAuth(fbApp);
+  db = getFirestore(fbApp);
+  try { enableIndexedDbPersistence(db); } catch(e){}
+}
+
 (function(){
   var GOLD = "#C6922C", GOLD2="#D9A441", NIGHT = "#5D7BA6", INK = "#1B2233";
   var LEVELS = [0.5, 1, 1.5, 2];
   var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
   var entries = {};
-  var price = 60;
+  var priceHistory = [{ date: "1970-01-01", price: 60 }]; // [{date:'YYYY-MM-DD', price:Number}], sorted ascending by date
+  var payments = {}; // { 'YYYY-MM': {paid:true, date:'YYYY-MM-DD'} }
   var viewYear, viewMonth;
   var openDayKey = null;
+  var currentUser = null;
+  var unsubscribeSnapshot = null;
 
   function pad(n){ return String(n).padStart(2,"0"); }
   function dkey(y,m,d){ return y+"-"+pad(m+1)+"-"+pad(d); }
   function todayKey(){ var t=new Date(); return dkey(t.getFullYear(), t.getMonth(), t.getDate()); }
   function daysInMonth(y,m){ return new Date(y, m+1, 0).getDate(); }
 
-  function load(){
-    try { var e = localStorage.getItem("milk-entries"); if(e) entries = JSON.parse(e); } catch(err){}
-    try { var p = localStorage.getItem("milk-price"); if(p) price = parseFloat(p) || 60; } catch(err){}
-  }
-  function saveEntries(){ try { localStorage.setItem("milk-entries", JSON.stringify(entries)); } catch(err){} }
-  function savePrice(){ try { localStorage.setItem("milk-price", String(price)); } catch(err){} }
+  function userDocRef(){ return doc(db, "users", currentUser.uid, "milkround", "data"); }
 
-  function bottleSVG(level, cap, size, selected){
-    size = size || 44;
+  async function pushToCloud(){
+    if(!currentUser) return;
+    try {
+      await setDoc(userDocRef(), { entries: entries, priceHistory: priceHistory, payments: payments, updatedAt: Date.now() });
+    } catch(err){ console.error("cloud save failed", err); showToast("Sync failed \u2014 check connection"); }
+  }
+
+  async function initCloudDataForUser(){
+    var ref = userDocRef();
+    var snap = await getDoc(ref);
+    if(!snap.exists()){
+      // first time this account has signed in: seed from any existing local data on this device
+      try {
+        var localEntries = JSON.parse(localStorage.getItem("milk-entries") || "{}");
+        var localHistRaw = localStorage.getItem("milk-price-history");
+        var localHist = localHistRaw ? JSON.parse(localHistRaw) : [{ date: "1970-01-01", price: parseFloat(localStorage.getItem("milk-price") || "60") || 60 }];
+        var localPayRaw = localStorage.getItem("milk-payments");
+        var localPay = localPayRaw ? JSON.parse(localPayRaw) : {};
+        entries = localEntries; priceHistory = localHist; payments = localPay;
+      } catch(e){ entries = {}; priceHistory = [{ date: "1970-01-01", price: 60 }]; payments = {}; }
+      await setDoc(ref, { entries: entries, priceHistory: priceHistory, payments: payments, updatedAt: Date.now() });
+    }
+    if(unsubscribeSnapshot) unsubscribeSnapshot();
+    unsubscribeSnapshot = onSnapshot(ref, function(snap){
+      if(!snap.exists()) return;
+      var d = snap.data();
+      entries = d.entries || {};
+      priceHistory = (d.priceHistory && d.priceHistory.length) ? d.priceHistory : [{ date: "1970-01-01", price: 60 }];
+      payments = d.payments || {};
+      renderCalendar();
+      if(openDayKey){ renderLevels("morningLevels", "morning"); renderLevels("nightLevels", "night"); }
+    }, function(err){ console.error("snapshot error", err); showToast("Sync connection lost"); });
+  }
+
+  function saveEntries(){ pushToCloud(); }
+  function savePriceHistory(){ pushToCloud(); }
+  function savePayments(){ pushToCloud(); }
+
+  function priceForDate(dateKey){
+    var sorted = priceHistory.slice().sort(function(a,b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+    var applicable = sorted.length ? sorted[0].price : 60;
+    for(var i=0;i<sorted.length;i++){
+      if(sorted[i].date <= dateKey) applicable = sorted[i].price;
+      else break;
+    }
+    return applicable;
+  }
+  function currentPrice(){ return priceForDate(todayKey()); }
+
+  function setPriceFrom(dateKey, value){
+    var existing = priceHistory.find(function(p){ return p.date === dateKey; });
+    if(existing) existing.price = value;
+    else priceHistory.push({ date: dateKey, price: value });
+    priceHistory.sort(function(a,b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+    savePriceHistory();
+  }
+
+  function bottleSVG(level, cap, selected){
     var bodyTop=32, bodyBottom=94, bodyHeight=bodyBottom-bodyTop;
     var frac = Math.min(level/2, 1);
     var fillY = bodyBottom - frac*bodyHeight;
-    var clipId = "clip-"+size+"-"+cap.replace("#","")+"-"+level;
-    var h = size*(104/60);
-    return '<svg width="'+size+'" height="'+h+'" viewBox="0 0 60 104">' +
+    var clipId = "clip-"+cap.replace("#","")+"-"+level;
+    return '<svg viewBox="0 0 60 104" preserveAspectRatio="xMidYMid meet">' +
       '<defs><clipPath id="'+clipId+'"><path d="M20 32 L20 22 Q20 18 24 18 L36 18 Q40 18 40 22 L40 32 Q48 36 48 46 L48 88 Q48 94 42 94 L18 94 Q12 94 12 88 L12 46 Q12 36 20 32 Z"/></clipPath></defs>' +
       '<path d="M20 32 L20 22 Q20 18 24 18 L36 18 Q40 18 40 22 L40 32 Q48 36 48 46 L48 88 Q48 94 42 94 L18 94 Q12 94 12 88 L12 46 Q12 36 20 32 Z" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="1.5"/>' +
       '<rect x="10" width="40" y="'+fillY+'" height="'+Math.max(bodyBottom-fillY,0)+'" fill="#FBF8F0" clip-path="url(#'+clipId+')"/>' +
@@ -250,25 +420,72 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
       '</svg>';
   }
 
+  function slotTotal(e, slot){
+    if(!e) return 0;
+    var v = e[slot];
+    if(!v) return 0;
+    if(typeof v === "number") return v;
+    var sum = 0;
+    for(var i=0;i<v.length;i++) sum += v[i];
+    return sum;
+  }
+  function slotArr(e, slot){
+    if(!e) return [];
+    var v = e[slot];
+    if(!v) return [];
+    if(typeof v === "number") return [v];
+    return v.slice();
+  }
+
   function renderSummary(){
     var y=viewYear, m=viewMonth, n=daysInMonth(y,m);
-    var morning=0, night=0, activeDays=0;
+    var morning=0, night=0, activeDays=0, cost=0;
     for(var d=1; d<=n; d++){
-      var e = entries[dkey(y,m,d)];
+      var key = dkey(y,m,d);
+      var e = entries[key];
       if(!e) continue;
+      var mv = slotTotal(e,"morning"), nv = slotTotal(e,"night");
       var hit = false;
-      if(e.morning){ morning += e.morning; hit = true; }
-      if(e.night){ night += e.night; hit = true; }
-      if(hit) activeDays++;
+      if(mv){ morning += mv; hit = true; }
+      if(nv){ night += nv; hit = true; }
+      if(hit){ activeDays++; cost += (mv+nv) * priceForDate(key); }
     }
     var litres = morning+night;
-    var cost = litres*price;
     document.getElementById("costAmt").textContent = cost.toFixed(0);
     document.getElementById("litresAmt").textContent = litres.toFixed(1)+" L";
     document.getElementById("daysAmt").textContent = activeDays+" days logged";
     document.getElementById("morningAmt").textContent = morning.toFixed(1)+" L";
     document.getElementById("nightAmt").textContent = night.toFixed(1)+" L";
-    document.getElementById("priceLabel").textContent = "\u20B9"+price+"/L";
+    document.getElementById("priceLabel").textContent = "\u20B9"+currentPrice()+"/L";
+    renderPayment();
+  }
+
+  function renderPayment(){
+    var mk = viewYear+"-"+pad(viewMonth+1);
+    var p = payments[mk];
+    var btn = document.getElementById("paymentBtn");
+    if(!btn) return;
+    if(p && p.paid){
+      var d = new Date(p.date + "T00:00:00");
+      var label = d.toLocaleDateString("en-IN", { day: "numeric", month: "short" });
+      btn.className = "paymentbtn paid";
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Paid on '+label+'</span>';
+    } else {
+      btn.className = "paymentbtn unpaid";
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg><span>Mark this month as Paid</span>';
+    }
+  }
+
+  function togglePayment(){
+    var mk = viewYear+"-"+pad(viewMonth+1);
+    var p = payments[mk];
+    if(p && p.paid){
+      delete payments[mk];
+    } else {
+      payments[mk] = { paid: true, date: todayKey() };
+    }
+    savePayments();
+    renderPayment();
   }
 
   function renderCalendar(){
@@ -291,8 +508,8 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
       var cell = document.createElement("button");
       cell.className = "daycell" + (isToday ? " today" : "");
       cell.innerHTML = '<span class="daynum'+(isToday?' today':'')+'">'+d+'</span><div class="dayflags">' +
-        (e && e.morning ? '<div class="flagdot" style="background:'+GOLD+'"></div>' : '') +
-        (e && e.night ? '<div class="flagdot" style="background:'+NIGHT+'"></div>' : '') +
+        (e && slotTotal(e,"morning") ? '<div class="flagdot" style="background:'+GOLD+'"></div>' : '') +
+        (e && slotTotal(e,"night") ? '<div class="flagdot" style="background:'+NIGHT+'"></div>' : '') +
         '</div>';
       cell.addEventListener("click", (function(k){ return function(){ openSheet(k); }; })(key));
       grid.appendChild(cell);
@@ -303,21 +520,21 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
   function renderLevels(containerId, slot){
     var container = document.getElementById(containerId);
     var entry = openDayKey ? entries[openDayKey] : null;
-    var value = entry ? (entry[slot] || 0) : 0;
+    var arr = slotArr(entry, slot);
+    var total = arr.reduce(function(a,b){return a+b;}, 0);
     var cap = slot === "morning" ? GOLD : NIGHT;
     var html = "";
     var opts = [0].concat(LEVELS);
     opts.forEach(function(lv){
-      var selected = value === lv;
-      var faint = value !== lv && value !== 0;
+      var selected = lv === 0 ? arr.length === 0 : arr.indexOf(lv) !== -1;
       var inner;
       if(lv === 0){
         inner = '<div class="noneicon'+(selected?' selected':'')+'">' +
           '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="'+(selected?"#6B7280":"#C3C9D3")+'" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>';
       } else {
-        inner = bottleSVG(lv, cap, 44, selected);
+        inner = bottleSVG(lv, cap, selected);
       }
-      html += '<button class="levelbtn'+(selected?' selected':'')+(faint?' faint':'')+'" data-lv="'+lv+'" data-slot="'+slot+'">' +
+      html += '<button class="levelbtn'+(selected?' selected':'')+'" data-lv="'+lv+'" data-slot="'+slot+'">' +
         inner + '<span class="levellabel'+(selected?' selected':'')+'">'+(lv===0?"&mdash;":lv+"L")+'</span></button>';
     });
     container.innerHTML = html;
@@ -328,13 +545,23 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
         setLevel(s, lv);
       });
     });
+    var totalEl = document.getElementById(slot === "morning" ? "morningTotalTag" : "nightTotalTag");
+    if(totalEl) totalEl.textContent = total > 0 ? (total.toFixed(1)+"L") : "";
   }
 
   function setLevel(slot, lv){
     if(!openDayKey) return;
     var e = entries[openDayKey] || {};
-    var current = e[slot] || 0;
-    e[slot] = current === lv ? 0 : lv;
+    var arr = slotArr(e, slot);
+    if(lv === 0){
+      arr = [];
+    } else {
+      var idx = arr.indexOf(lv);
+      if(idx !== -1) arr.splice(idx, 1);
+      else { arr.push(lv); arr.sort(function(a,b){return a-b;}); }
+    }
+    if(arr.length === 0) delete e[slot];
+    else e[slot] = arr;
     if(!e.morning && !e.night){ delete entries[openDayKey]; }
     else { entries[openDayKey] = e; }
     saveEntries();
@@ -374,14 +601,13 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
     document.getElementById("priceStatic").style.display = "none";
     document.getElementById("priceEditing").style.display = "flex";
     var input = document.getElementById("priceInput");
-    input.value = price;
+    input.value = currentPrice();
     input.focus();
     input.select();
   });
   function commitPrice(){
     var v = parseFloat(document.getElementById("priceInput").value);
-    if(isFinite(v) && v>0) price = v;
-    savePrice();
+    if(isFinite(v) && v>0) setPriceFrom(todayKey(), v);
     document.getElementById("priceStatic").style.display = "flex";
     document.getElementById("priceEditing").style.display = "none";
     renderSummary();
@@ -390,6 +616,56 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
   document.getElementById("priceInput").addEventListener("keydown", function(e){
     if(e.key === "Enter") commitPrice();
   });
+
+  function renderHistoryList(){
+    var list = document.getElementById("histList");
+    var sorted = priceHistory.slice().sort(function(a,b){ return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+    var html = "";
+    sorted.forEach(function(p){
+      var isSeed = p.date === "1970-01-01";
+      var label = isSeed ? "Since the start" : ("From " + new Date(p.date+"T00:00:00").toLocaleDateString("en-IN", {day:"numeric", month:"short", year:"numeric"}));
+      html += '<div class="histrow"><span class="histdate">'+label+'</span><span class="histprice">\u20B9'+p.price+'/L</span>' +
+        (sorted.length > 1 ? '<button class="histdel" data-date="'+p.date+'">&times;</button>' : '<span></span>') + '</div>';
+    });
+    list.innerHTML = html;
+    Array.prototype.forEach.call(list.querySelectorAll(".histdel"), function(btn){
+      btn.addEventListener("click", function(){
+        var d = btn.getAttribute("data-date");
+        priceHistory = priceHistory.filter(function(p){ return p.date !== d; });
+        savePriceHistory();
+        renderHistoryList();
+        renderSummary();
+      });
+    });
+  }
+
+  function openHistorySheet(){
+    renderHistoryList();
+    var di = document.getElementById("histDateInput");
+    di.value = todayKey();
+    document.getElementById("histPriceInput").value = "";
+    document.getElementById("histOverlay").classList.add("open");
+    document.getElementById("histSheet").classList.add("open");
+  }
+  function closeHistorySheet(){
+    document.getElementById("histOverlay").classList.remove("open");
+    document.getElementById("histSheet").classList.remove("open");
+  }
+  document.getElementById("priceHistBtn").addEventListener("click", openHistorySheet);
+  document.getElementById("histOverlay").addEventListener("click", closeHistorySheet);
+  document.getElementById("histClose").addEventListener("click", closeHistorySheet);
+  document.getElementById("histAddBtn").addEventListener("click", function(){
+    var d = document.getElementById("histDateInput").value;
+    var v = parseFloat(document.getElementById("histPriceInput").value);
+    if(!d || !isFinite(v) || v<=0){ showToast("Enter a valid date and price"); return; }
+    setPriceFrom(d, v);
+    renderHistoryList();
+    renderSummary();
+    document.getElementById("histPriceInput").value = "";
+    showToast("Price entry saved");
+  });
+
+  document.getElementById("paymentBtn").addEventListener("click", togglePayment);
 
   // install hint: show once, only if not already installed / standalone
   var isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
@@ -419,13 +695,14 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
     var byMonth = {};
     keys.forEach(function(key){
       var e = entries[key];
-      var morning = e.morning || 0;
-      var night = e.night || 0;
+      var morning = slotTotal(e,"morning");
+      var night = slotTotal(e,"night");
       var total = morning + night;
-      var cost = total * price;
+      var dayPrice = priceForDate(key);
+      var cost = total * dayPrice;
       var dt = new Date(key + "T00:00:00");
       var dayName = dt.toLocaleDateString("en-IN", { weekday: "short" });
-      rows.push([key, dayName, morning, night, total, price, Number(cost.toFixed(2))]);
+      rows.push([key, dayName, morning, night, total, dayPrice, Number(cost.toFixed(2))]);
       var mk = key.slice(0,7);
       if(!byMonth[mk]) byMonth[mk] = { morning:0, night:0, total:0, cost:0 };
       byMonth[mk].morning += morning;
@@ -460,13 +737,111 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
     }
   }
 
+  function icsEscape(s){
+    return String(s).replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n");
+  }
+
+  function exportToCalendar(){
+    var keys = Object.keys(entries).sort();
+    if(keys.length === 0){
+      showToast("No entries yet to add");
+      return;
+    }
+    var now = new Date();
+    var stamp = now.getFullYear()+pad(now.getMonth()+1)+pad(now.getDate())+"T"+pad(now.getHours())+pad(now.getMinutes())+pad(now.getSeconds())+"Z";
+    var lines = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Milk Round//EN","CALSCALE:GREGORIAN"];
+
+    keys.forEach(function(key){
+      var e = entries[key];
+      var morning = slotTotal(e,"morning");
+      var night = slotTotal(e,"night");
+      var total = morning + night;
+      if(total <= 0) return;
+      var dayPrice = priceForDate(key);
+      var cost = total * dayPrice;
+      var ymd = key.replace(/-/g, "");
+      var nextDay = new Date(key + "T00:00:00");
+      nextDay.setDate(nextDay.getDate() + 1);
+      var ymdEnd = nextDay.getFullYear()+pad(nextDay.getMonth()+1)+pad(nextDay.getDate());
+
+      var titleParts = [];
+      if(morning) titleParts.push(morning + "L AM");
+      if(night) titleParts.push(night + "L PM");
+      var title = "\uD83E\uDD5B Milk " + titleParts.join(" + ");
+      var desc = "Total: " + total.toFixed(1) + "L at \u20B9" + dayPrice + "/L = \u20B9" + cost.toFixed(2);
+
+      lines.push("BEGIN:VEVENT");
+      lines.push("UID:milkround-" + key + "@local");
+      lines.push("DTSTAMP:" + stamp);
+      lines.push("DTSTART;VALUE=DATE:" + ymd);
+      lines.push("DTEND;VALUE=DATE:" + ymdEnd);
+      lines.push("SUMMARY:" + icsEscape(title));
+      lines.push("DESCRIPTION:" + icsEscape(desc));
+      lines.push("TRANSP:TRANSPARENT");
+      lines.push("END:VEVENT");
+    });
+    lines.push("END:VCALENDAR");
+
+    var icsText = lines.join("\r\n");
+    var blob = new Blob([icsText], { type: "text/calendar;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "Milk-Round-Calendar.ics";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 3000);
+    showToast("Saved .ics — open it to add to Calendar");
+  }
+
   document.getElementById("exportBtn").addEventListener("click", exportToExcel);
+  document.getElementById("calendarBtn").addEventListener("click", exportToCalendar);
+
+  function showGate(msg){
+    var gate = document.getElementById("authGate");
+    if(gate) gate.classList.add("show");
+    var status = document.getElementById("authStatus");
+    if(status && msg) status.textContent = msg;
+  }
+  function hideGate(){
+    var gate = document.getElementById("authGate");
+    if(gate) gate.classList.remove("show");
+  }
+
+  document.getElementById("signInBtn").addEventListener("click", function(){
+    if(!firebaseConfigured){ showToast("Firebase isn't configured yet"); return; }
+    signInWithRedirect(auth, new GoogleAuthProvider());
+  });
+  var signOutBtn = document.getElementById("signOutBtn");
+  if(signOutBtn) signOutBtn.addEventListener("click", function(){
+    signOut(auth);
+  });
 
   // init
-  load();
   var t = new Date();
   viewYear = t.getFullYear(); viewMonth = t.getMonth();
   renderCalendar();
+
+  if(!firebaseConfigured){
+    showGate("This app isn't connected to a sync account yet.");
+  } else {
+    getRedirectResult(auth).catch(function(err){ console.error("redirect result error", err); });
+    onAuthStateChanged(auth, function(user){
+      if(user){
+        currentUser = user;
+        var nameEl = document.getElementById("authUserName");
+        if(nameEl) nameEl.textContent = user.displayName || user.email || "";
+        hideGate();
+        showToast("Signed in \u2014 syncing your data");
+        initCloudDataForUser();
+      } else {
+        currentUser = null;
+        if(unsubscribeSnapshot){ unsubscribeSnapshot(); unsubscribeSnapshot = null; }
+        showGate("Sign in to sync your milk log across devices.");
+      }
+    });
+  }
 })();
 </script>
 </body>
