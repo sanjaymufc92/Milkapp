@@ -31,21 +31,6 @@
     padding:26px 22px 22px; position:relative; overflow:hidden;}
   .hero::before{content:"";position:absolute;top:-60px;right:-40px;width:180px;height:180px;
     border-radius:50%;background:radial-gradient(circle, rgba(198,146,44,0.18) 0%, transparent 70%);}
-  .account-row{display:flex;align-items:center;justify-content:space-between;gap:10px;}
-  .accountbtn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:999px;
-    padding:5px 12px;cursor:pointer;max-width:150px;}
-  .accountbtn span{font-size:10.5px;color:#B9C3DA;font-family:'Inter',sans-serif;font-weight:600;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;}
-  .authgate{position:fixed;inset:0;z-index:100;background:linear-gradient(165deg,#101B34 0%,#16264A 55%,#223761 100%);
-    display:none;align-items:center;justify-content:center;padding:24px;}
-  .authgate.show{display:flex;}
-  .authgate-inner{max-width:320px;text-align:center;}
-  .authgate-icon{margin-bottom:18px;display:flex;justify-content:center;}
-  .authgate-title{font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#FBF8F0;margin-bottom:10px;}
-  .authgate-status{font-size:13px;color:#B9C3DA;margin-bottom:26px;line-height:1.5;}
-  .signinbtn{display:flex;align-items:center;justify-content:center;gap:10px;background:#FFFFFF;
-    border:none;border-radius:12px;padding:13px 20px;cursor:pointer;width:100%;font-family:'Inter',sans-serif;
-    font-size:14px;font-weight:600;color:#1B2233;}
   .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#8FA1C4;
     text-transform:uppercase;margin-bottom:4px;}
   .title{font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#FBF8F0;}
@@ -164,27 +149,8 @@
 <body>
 <div id="app">
 
-  <div class="authgate" id="authGate">
-    <div class="authgate-inner">
-      <div class="authgate-icon">
-        <svg width="30" height="30" viewBox="0 0 60 104"><path d="M20 32 L20 22 Q20 18 24 18 L36 18 Q40 18 40 22 L40 32 Q48 36 48 46 L48 88 Q48 94 42 94 L18 94 Q12 94 12 88 L12 46 Q12 36 20 32 Z" fill="#FBF8F0" stroke="#3A4A6B" stroke-width="1.5"/><rect x="18" y="10" width="24" height="10" rx="3" fill="#C6922C"/></svg>
-      </div>
-      <div class="authgate-title">Milkman</div>
-      <div class="authgate-status" id="authStatus">Sign in to sync your milk log across devices.</div>
-      <button id="signInBtn" class="signinbtn">
-        <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.5 5.5 29.6 3.5 24 3.5 12.7 3.5 3.5 12.7 3.5 24S12.7 44.5 24 44.5 44.5 35.3 44.5 24c0-1.2-.1-2.4-.3-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.5 6.5 29.6 4.5 24 4.5 15.9 4.5 8.9 9 6.3 14.7z"/><path fill="#4CAF50" d="M24 44.5c5.5 0 10.4-1.9 14.1-5.1l-6.5-5.5C29.6 35.5 26.9 36.5 24 36.5c-5.3 0-9.7-3.1-11.3-7.5l-6.6 5.1C9 39.9 16 44.5 24 44.5z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.7l6.5 5.5C39.9 37.4 44.5 31.5 44.5 24c0-1.2-.1-2.4-.3-3.5z"/></svg>
-        <span>Sign in with Google</span>
-      </button>
-    </div>
-  </div>
-
   <div class="hero">
-    <div class="account-row">
-      <div class="eyebrow">Milkman</div>
-      <button id="signOutBtn" class="accountbtn" title="Signed in">
-        <span id="authUserName"></span>
-      </button>
-    </div>
+    <div class="eyebrow">Milkman</div>
     <div class="title">Milk Tracker</div>
 
     <div class="monthnav">
@@ -304,30 +270,7 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
 
 </script>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc, onSnapshot, enableIndexedDbPersistence } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-// ---- PASTE YOUR FIREBASE CONFIG HERE (from Firebase Console > Project Settings) ----
-const firebaseConfig = {
-  apiKey: "AIzaSyC4DMrXyXGUU--To7mwJcoajr8FyJsi5_M",
-  authDomain: "milkman-3aa09.firebaseapp.com",
-  projectId: "milkman-3aa09",
-  storageBucket: "milkman-3aa09.firebasestorage.app",
-  messagingSenderId: "726998859546",
-  appId: "1:726998859546:web:47ed40886ff6500361f6a3"
-};
-const firebaseConfigured = firebaseConfig.apiKey.indexOf("PASTE_") !== 0;
-
-let fbApp, auth, db;
-if(firebaseConfigured){
-  fbApp = initializeApp(firebaseConfig);
-  auth = getAuth(fbApp);
-  db = getFirestore(fbApp);
-  try { enableIndexedDbPersistence(db); } catch(e){}
-}
-
+<script>
 (function(){
   var GOLD = "#C6922C", GOLD2="#D9A441", NIGHT = "#5D7BA6", INK = "#1B2233";
   var LEVELS = [0.5, 1, 1.5, 2];
@@ -338,53 +281,30 @@ if(firebaseConfigured){
   var payments = {}; // { 'YYYY-MM': {paid:true, date:'YYYY-MM-DD'} }
   var viewYear, viewMonth;
   var openDayKey = null;
-  var currentUser = null;
-  var unsubscribeSnapshot = null;
 
   function pad(n){ return String(n).padStart(2,"0"); }
   function dkey(y,m,d){ return y+"-"+pad(m+1)+"-"+pad(d); }
   function todayKey(){ var t=new Date(); return dkey(t.getFullYear(), t.getMonth(), t.getDate()); }
   function daysInMonth(y,m){ return new Date(y, m+1, 0).getDate(); }
 
-  function userDocRef(){ return doc(db, "users", currentUser.uid, "milkround", "data"); }
-
-  async function pushToCloud(){
-    if(!currentUser) return;
+  function load(){
+    try { var e = localStorage.getItem("milk-entries"); if(e) entries = JSON.parse(e); } catch(err){}
     try {
-      await setDoc(userDocRef(), { entries: entries, priceHistory: priceHistory, payments: payments, updatedAt: Date.now() });
-    } catch(err){ console.error("cloud save failed", err); showToast("Sync failed \u2014 check connection"); }
+      var h = localStorage.getItem("milk-price-history");
+      if(h){
+        priceHistory = JSON.parse(h);
+      } else {
+        var legacy = localStorage.getItem("milk-price");
+        var v = legacy ? (parseFloat(legacy) || 60) : 60;
+        priceHistory = [{ date: "1970-01-01", price: v }];
+        savePriceHistory();
+      }
+    } catch(err){ priceHistory = [{ date: "1970-01-01", price: 60 }]; }
+    try { var pay = localStorage.getItem("milk-payments"); if(pay) payments = JSON.parse(pay); } catch(err){}
   }
-
-  async function initCloudDataForUser(){
-    var ref = userDocRef();
-    var snap = await getDoc(ref);
-    if(!snap.exists()){
-      // first time this account has signed in: seed from any existing local data on this device
-      try {
-        var localEntries = JSON.parse(localStorage.getItem("milk-entries") || "{}");
-        var localHistRaw = localStorage.getItem("milk-price-history");
-        var localHist = localHistRaw ? JSON.parse(localHistRaw) : [{ date: "1970-01-01", price: parseFloat(localStorage.getItem("milk-price") || "60") || 60 }];
-        var localPayRaw = localStorage.getItem("milk-payments");
-        var localPay = localPayRaw ? JSON.parse(localPayRaw) : {};
-        entries = localEntries; priceHistory = localHist; payments = localPay;
-      } catch(e){ entries = {}; priceHistory = [{ date: "1970-01-01", price: 60 }]; payments = {}; }
-      await setDoc(ref, { entries: entries, priceHistory: priceHistory, payments: payments, updatedAt: Date.now() });
-    }
-    if(unsubscribeSnapshot) unsubscribeSnapshot();
-    unsubscribeSnapshot = onSnapshot(ref, function(snap){
-      if(!snap.exists()) return;
-      var d = snap.data();
-      entries = d.entries || {};
-      priceHistory = (d.priceHistory && d.priceHistory.length) ? d.priceHistory : [{ date: "1970-01-01", price: 60 }];
-      payments = d.payments || {};
-      renderCalendar();
-      if(openDayKey){ renderLevels("morningLevels", "morning"); renderLevels("nightLevels", "night"); }
-    }, function(err){ console.error("snapshot error", err); showToast("Sync connection lost"); });
-  }
-
-  function saveEntries(){ pushToCloud(); }
-  function savePriceHistory(){ pushToCloud(); }
-  function savePayments(){ pushToCloud(); }
+  function saveEntries(){ try { localStorage.setItem("milk-entries", JSON.stringify(entries)); } catch(err){} }
+  function savePriceHistory(){ try { localStorage.setItem("milk-price-history", JSON.stringify(priceHistory)); } catch(err){} }
+  function savePayments(){ try { localStorage.setItem("milk-payments", JSON.stringify(payments)); } catch(err){} }
 
   function priceForDate(dateKey){
     var sorted = priceHistory.slice().sort(function(a,b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
@@ -798,50 +718,11 @@ if(firebaseConfigured){
   document.getElementById("exportBtn").addEventListener("click", exportToExcel);
   document.getElementById("calendarBtn").addEventListener("click", exportToCalendar);
 
-  function showGate(msg){
-    var gate = document.getElementById("authGate");
-    if(gate) gate.classList.add("show");
-    var status = document.getElementById("authStatus");
-    if(status && msg) status.textContent = msg;
-  }
-  function hideGate(){
-    var gate = document.getElementById("authGate");
-    if(gate) gate.classList.remove("show");
-  }
-
-  document.getElementById("signInBtn").addEventListener("click", function(){
-    if(!firebaseConfigured){ showToast("Firebase isn't configured yet"); return; }
-    signInWithRedirect(auth, new GoogleAuthProvider());
-  });
-  var signOutBtn = document.getElementById("signOutBtn");
-  if(signOutBtn) signOutBtn.addEventListener("click", function(){
-    signOut(auth);
-  });
-
   // init
+  load();
   var t = new Date();
   viewYear = t.getFullYear(); viewMonth = t.getMonth();
   renderCalendar();
-
-  if(!firebaseConfigured){
-    showGate("This app isn't connected to a sync account yet.");
-  } else {
-    getRedirectResult(auth).catch(function(err){ console.error("redirect result error", err); });
-    onAuthStateChanged(auth, function(user){
-      if(user){
-        currentUser = user;
-        var nameEl = document.getElementById("authUserName");
-        if(nameEl) nameEl.textContent = user.displayName || user.email || "";
-        hideGate();
-        showToast("Signed in \u2014 syncing your data");
-        initCloudDataForUser();
-      } else {
-        currentUser = null;
-        if(unsubscribeSnapshot){ unsubscribeSnapshot(); unsubscribeSnapshot = null; }
-        showGate("Sign in to sync your milk log across devices.");
-      }
-    });
-  }
 })();
 </script>
 </body>
