@@ -210,6 +210,28 @@
   .install-hint.show{display:block;}
   .install-hint b{color:#5C4213;}
   .install-hint .close-hint{float:right;border:none;background:none;color:#B99248;font-size:15px;cursor:pointer;}
+
+  #receiptPrint{display:none;}
+  .receiptcard{max-width:380px;margin:0 auto;font-family:'IBM Plex Mono',monospace;color:#1B2233;}
+  .receipthead{text-align:center;margin-bottom:16px;}
+  .receipttitle{font-family:'Fraunces',serif;font-size:24px;font-weight:600;}
+  .receiptmonth{font-size:13px;color:#6B7280;margin-top:3px;}
+  .receiptdivider{border-top:1px dashed #9AA5B5;margin:14px 0;}
+  .receipttable{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .receipttable td{padding:5px 0;}
+  .receipttable td:last-child{text-align:right;font-weight:600;}
+  .receiptsub{font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#6B7280;margin-bottom:4px;}
+  .receipttotalrow{display:flex;justify-content:space-between;align-items:baseline;font-size:20px;font-weight:700;}
+  .receiptstatus{text-align:center;font-size:12.5px;margin-top:8px;font-weight:600;}
+  .receiptstatus.paid{color:#4C8C6B;}
+  .receiptstatus.unpaid{color:#B9822E;}
+  .receiptfoot{text-align:center;font-size:10.5px;color:#9AA5B5;margin-top:10px;}
+
+  @media print{
+    body *{visibility:hidden;}
+    #receiptPrint, #receiptPrint *{visibility:visible;}
+    #receiptPrint{display:block !important;position:absolute;top:0;left:0;width:100%;padding:24px;}
+  }
 </style>
 </head>
 <body>
@@ -279,6 +301,10 @@
         <button id="exportBtn" class="exportbtn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDEFF3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span>Excel</span>
+        </button>
+        <button id="receiptBtn" class="exportbtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDEFF3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l3 3v17H6z"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+          <span>Receipt</span>
         </button>
       </div>
     </div>
@@ -410,6 +436,8 @@
   </div>
 
   <div class="toast" id="toast"></div>
+
+  <div id="receiptPrint"></div>
 
 </div>
 
@@ -925,6 +953,72 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
     }
   }
 
+  function priceBreakdownForMonth(y, m){
+    var n = daysInMonth(y,m);
+    var segments = [];
+    var segStart = 1, segPrice = null;
+    for(var d=1; d<=n; d++){
+      var p = priceForDate(dkey(y,m,d));
+      if(segPrice === null){ segPrice = p; segStart = d; }
+      else if(p !== segPrice){
+        segments.push({ fromDay: segStart, toDay: d-1, price: segPrice });
+        segPrice = p; segStart = d;
+      }
+    }
+    if(segPrice !== null) segments.push({ fromDay: segStart, toDay: n, price: segPrice });
+    return segments;
+  }
+
+  function buildReceiptHTML(y, m){
+    var stats = monthStats(y, m);
+    var mk = y+"-"+pad(m+1);
+    var p = payments[mk];
+    var monthLabel = MONTHS[m] + " " + y;
+    var segs = priceBreakdownForMonth(y, m);
+    var priceRows = segs.map(function(s){
+      var range = (s.fromDay === s.toDay) ? (s.fromDay + " " + MONTHS[m].slice(0,3)) : (s.fromDay + "–" + s.toDay + " " + MONTHS[m].slice(0,3));
+      return '<tr><td>'+range+'</td><td>₹'+s.price+'/L</td></tr>';
+    }).join("");
+    var statusHtml = (p && p.paid)
+      ? ('<div class="receiptstatus paid">Paid on ' + new Date(p.date+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}) + '</div>')
+      : '<div class="receiptstatus unpaid">Payment pending</div>';
+    var today = new Date();
+
+    return (
+      '<div class="receiptcard">' +
+        '<div class="receipthead">' +
+          '<div class="receipttitle">Milk Bill</div>' +
+          '<div class="receiptmonth">'+monthLabel+'</div>' +
+        '</div>' +
+        '<div class="receiptdivider"></div>' +
+        '<table class="receipttable">' +
+          '<tr><td>Morning</td><td>'+stats.morning.toFixed(1)+' L</td></tr>' +
+          '<tr><td>Night</td><td>'+stats.night.toFixed(1)+' L</td></tr>' +
+          '<tr><td>Total litres</td><td>'+stats.litres.toFixed(1)+' L</td></tr>' +
+          '<tr><td>Days logged</td><td>'+stats.activeDays+'</td></tr>' +
+        '</table>' +
+        '<div class="receiptdivider"></div>' +
+        '<div class="receiptsub">Rate</div>' +
+        '<table class="receipttable">' + (priceRows || '<tr><td colspan="2">—</td></tr>') + '</table>' +
+        '<div class="receiptdivider"></div>' +
+        '<div class="receipttotalrow"><span>Total Amount</span><span>₹'+stats.cost.toFixed(0)+'</span></div>' +
+        statusHtml +
+        '<div class="receiptdivider"></div>' +
+        '<div class="receiptfoot">Generated '+today.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})+' · Milk Tracker</div>' +
+      '</div>'
+    );
+  }
+
+  function printReceipt(){
+    var stats = monthStats(viewYear, viewMonth);
+    if(stats.activeDays === 0){
+      showToast("Nothing logged this month to print");
+      return;
+    }
+    document.getElementById("receiptPrint").innerHTML = buildReceiptHTML(viewYear, viewMonth);
+    window.print();
+  }
+
   function backupPayload(){
     return {
       app: "milk-round",
@@ -1197,6 +1291,7 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
   document.getElementById("syncDisconnectBtn").addEventListener("click", disconnectSync);
 
   document.getElementById("exportBtn").addEventListener("click", exportToExcel);
+  document.getElementById("receiptBtn").addEventListener("click", printReceipt);
 
   document.getElementById("tabTodayBtn").addEventListener("click", function(){ switchTab("today"); });
   document.getElementById("tabCalendarBtn").addEventListener("click", function(){ switchTab("calendar"); });
