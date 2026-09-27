@@ -91,18 +91,27 @@
   .picker-label span{font-size:12.5px;font-weight:600;color:#6B7280;letter-spacing:0.3px;text-transform:uppercase;}
   .totaltag{margin-left:auto !important;font-family:'IBM Plex Mono',monospace;font-size:12px !important;
     color:var(--ink) !important;font-weight:700 !important;text-transform:none !important;letter-spacing:0 !important;}
+  .totaltag.nomilk{color:#B34A3C !important;}
   .divider{height:1px;background:#EEF0F3;}
-  .levels{display:flex;gap:6px;justify-content:space-between;}
-  .levelbtn{flex:1;min-width:0;border:none;cursor:pointer;background:transparent;display:flex;flex-direction:column;
-    align-items:center;gap:4px;padding:6px 2px;border-radius:12px;}
-  .levelbtn svg{width:100%;max-width:48px;height:auto;display:block;
-    transition:transform 320ms cubic-bezier(.34,1.56,.64,1);}
-  .levelbtn.selected svg{transform:scale(1.08) translateY(-2px);}
-  .levellabel{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#9AA5B5;font-weight:500;}
-  .levellabel.selected{color:var(--ink);font-weight:700;}
-  .noneicon{width:100%;max-width:48px;aspect-ratio:60/104;display:flex;align-items:center;justify-content:center;
-    border:1.5px dashed #DDE1E8;border-radius:10px;}
-  .noneicon.selected{border-color:#9AA5B5;}
+
+  .track{position:relative;height:46px;border-radius:14px;background:#F0F1F4;border:1px solid #E3E6EB;
+    overflow:hidden;}
+  .track.nomilk{background:#F5EEEC;}
+  .trackfill{position:absolute;top:0;left:0;bottom:0;border-radius:14px 0 0 14px;
+    transition:width 220ms cubic-bezier(.22,1,.36,1);}
+  .trackstops{position:absolute;inset:0;display:flex;}
+  .trackstop{flex:1;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;
+    cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:#9AA5B5;
+    transition:color 160ms ease;}
+  .trackstop.lit{color:#fff;}
+  .trackstop::after{content:"";position:absolute;right:0;top:9px;bottom:9px;width:1px;background:rgba(0,0,0,0.06);}
+  .trackstop:last-child::after{display:none;}
+  .tracknomilklabel{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;
+    font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:#B34A3C;pointer-events:none;}
+  .nomilkbtn{border:1.5px dashed #D7DBE3;background:#fff;border-radius:10px;padding:9px 12px;width:100%;
+    margin-top:10px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#9AA5B5;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all 160ms ease;}
+  .nomilkbtn.active{background:#3A3230;border-color:#3A3230;border-style:solid;color:#fff;}
 
   .histbtn{background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;}
   .histrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #F0F1F4;}
@@ -111,6 +120,17 @@
   .histprice{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--ink);}
   .histdel{border:none;background:#F3F5F8;color:#9AA5B5;width:22px;height:22px;border-radius:999px;
     font-size:15px;cursor:pointer;line-height:1;}
+
+  .payhistrow{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #F0F1F4;}
+  .payhistrow:last-child{border-bottom:none;}
+  .payhistmonth{flex:1;}
+  .payhistmonthname{font-size:13.5px;color:var(--ink);font-weight:600;}
+  .payhistcost{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#9AA5B5;margin-top:1px;}
+  .payhistchip{border:1px solid;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;
+    cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+  .payhistchip.unpaid{background:#FBF3EC;border-color:#F0DFC8;color:#B9822E;}
+  .payhistchip.paid{background:#EFF7F2;border-color:#CDE7D8;color:#4C8C6B;}
+  .payhistempty{text-align:center;font-size:12.5px;color:#9AA5B5;padding:20px 0;}
   .histform{margin-top:14px;padding-top:14px;border-top:1px solid #EEF0F3;}
   .histform-row{display:flex;gap:8px;margin-bottom:10px;}
   .histinput{border:1px solid #E3E6EB;border-radius:10px;padding:9px 10px;font-size:13px;
@@ -123,17 +143,63 @@
   .histaddbtn{width:100%;background:var(--navy);color:#FBF8F0;border:none;border-radius:10px;
     padding:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
 
-  .payment-row{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);}
-  .paymentbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:7px;padding:9px;
+  .payment-row{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);
+    display:flex;align-items:center;gap:8px;}
+  .paymenthistbtn{flex-shrink:0;background:rgba(255,255,255,0.08);border-radius:999px;width:30px;height:30px;
+    justify-content:center;}
+  .paymentbtn{flex:1;width:auto;display:flex;align-items:center;justify-content:center;gap:7px;padding:9px;
     border-radius:10px;cursor:pointer;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;border:1px solid;}
   .paymentbtn.unpaid{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.14);color:#B9C3DA;}
   .paymentbtn.paid{background:rgba(76,140,107,0.16);border-color:rgba(76,140,107,0.4);color:#8FD9AE;}
 
-  .exportrow{display:flex;gap:8px;margin-top:10px;}
-  .exportbtn{flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
-    border-radius:12px;padding:11px 6px;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;}
-  .exportbtn span{font-size:12.5px;font-weight:600;color:#EDEFF3;font-family:'Inter',sans-serif;}
+  .tabbar{display:flex;align-items:center;gap:8px;margin-top:20px;}
+  .tabbtn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#B9C3DA;
+    border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+  .tabbtn.active{background:#FBF8F0;color:var(--navy);border-color:#FBF8F0;}
+  .tabsyncbtn{margin-left:auto;position:relative;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
+    border-radius:999px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .syncdot{position:absolute;top:-2px;right:-2px;width:9px;height:9px;border-radius:50%;
+    background:#6B7280;border:2px solid #16264A;}
+  .syncdot.on{background:#5FCB8F;}
+  .syncdot.off{background:#E0A23B;}
+
+  #todayHero{margin-top:20px;}
+  .todaydateline{font-family:'Fraunces',serif;font-size:19px;color:#FBF8F0;font-weight:600;}
+  .todaychips{display:flex;align-items:center;gap:14px;margin-top:8px;}
+  .todaychips .chip{font-size:12.5px;}
+  #todayPage{padding:16px 18px 110px;}
+  .todaycard{background:var(--card);border-radius:20px;padding:20px 18px 22px;
+    box-shadow:0 1px 3px rgba(18,32,61,0.08);border:1px solid var(--line);}
+
+  .exportrow{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+  .exportbtn{flex:1;min-width:0;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
+    border-radius:12px;padding:11px 6px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;}
+  .exportbtn span{font-size:12px;font-weight:600;color:#EDEFF3;font-family:'Inter',sans-serif;white-space:nowrap;}
   .exportbtn:active{background:rgba(255,255,255,0.14);}
+
+  .backupinfo{font-size:12.5px;color:#8A93A6;line-height:1.5;margin-bottom:16px;font-family:'Inter',sans-serif;}
+  .backupactions{display:flex;flex-direction:column;gap:10px;}
+  .backupbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+    border-radius:10px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;border:1px solid;}
+  .backupbtn.primary{background:var(--navy);color:#FBF8F0;border-color:var(--navy);}
+  .backupbtn.secondary{background:#F3F5F8;color:var(--ink);border-color:#E3E6EB;}
+  .backuptimestamp{text-align:center;font-size:11.5px;color:#9AA5B5;margin-top:14px;font-family:'IBM Plex Mono',monospace;}
+
+  .syncsteps{margin:0 0 14px;padding-left:20px;font-size:12.5px;color:#6B7280;line-height:1.7;font-family:'Inter',sans-serif;}
+  .syncsteps b{color:var(--ink);}
+  .syncsteps code{background:#F3F5F8;padding:1px 5px;border-radius:5px;font-size:11.5px;}
+  #syncConfigInput{width:100%;min-height:100px;background:#FAFBFC;border:1px solid #E3E6EB;border-radius:10px;
+    padding:10px 12px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink);resize:vertical;
+    margin-bottom:12px;box-sizing:border-box;}
+  #syncConfigInput:focus{border-color:var(--navy);outline:none;}
+  .sync-status-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:13px;
+    color:var(--ink);font-family:'Inter',sans-serif;font-weight:600;}
+  .sync-status-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;background:#9AA5B5;}
+  .sync-status-dot.on{background:#4C8C6B;}
+  .sync-status-dot.off{background:#C79B3D;}
+  .syncdivider{display:flex;align-items:center;gap:10px;margin:18px 0 14px;}
+  .syncdivider::before,.syncdivider::after{content:"";flex:1;height:1px;background:#EEF0F3;}
+  .syncdivider span{font-size:11px;color:#9AA5B5;font-family:'Inter',sans-serif;text-transform:uppercase;letter-spacing:0.04em;}
   .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);
     background:#16264A;color:#FBF8F0;padding:10px 18px;border-radius:999px;font-size:13px;font-weight:500;
     box-shadow:0 8px 24px rgba(18,32,61,0.3);opacity:0;pointer-events:none;transition:all 280ms ease;z-index:40;
@@ -153,51 +219,68 @@
     <div class="eyebrow">Milkman</div>
     <div class="title">Milk Tracker</div>
 
-    <div class="monthnav">
-      <button class="navbtn" id="prevMonth">&#8249;</button>
-      <span class="monthlabel" id="monthLabel"></span>
-      <button class="navbtn" id="nextMonth">&#8250;</button>
+    <div class="tabbar">
+      <button class="tabbtn active" id="tabTodayBtn">Today</button>
+      <button class="tabbtn" id="tabCalendarBtn">Calendar</button>
+      <button class="tabsyncbtn" id="backupOpenBtn" title="Cross-device sync">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#EDEFF3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 3 21 8 16 8"/></svg>
+        <span class="syncdot" id="syncDot"></span>
+      </button>
     </div>
 
-    <div class="summary">
-      <div class="summary-top">
-        <div>
-          <div class="summary-label">This month</div>
-          <div class="summary-cost"><span class="rupee">&#8377;</span><span class="amt" id="costAmt">0</span></div>
+    <div id="todayHero">
+      <div class="todaydateline" id="todayDateLine"></div>
+      <div class="todaychips">
+        <div class="chip"><span class="dot" style="background:#C6922C"></span><span id="todayLitresChip">0.0 L logged today</span></div>
+      </div>
+    </div>
+
+    <div id="calendarHero" style="display:none">
+      <div class="monthnav">
+        <button class="navbtn" id="prevMonth">&#8249;</button>
+        <span class="monthlabel" id="monthLabel"></span>
+        <button class="navbtn" id="nextMonth">&#8250;</button>
+      </div>
+
+      <div class="summary">
+        <div class="summary-top">
+          <div>
+            <div class="summary-label">This month</div>
+            <div class="summary-cost"><span class="rupee">&#8377;</span><span class="amt" id="costAmt">0</span></div>
+          </div>
+          <div class="summary-right">
+            <div class="summary-litres" id="litresAmt">0.0 L</div>
+            <div class="summary-days" id="daysAmt">0 days logged</div>
+          </div>
         </div>
-        <div class="summary-right">
-          <div class="summary-litres" id="litresAmt">0.0 L</div>
-          <div class="summary-days" id="daysAmt">0 days logged</div>
+        <div class="summary-row">
+          <div class="chip"><span class="dot" style="background:#C6922C"></span><span id="morningAmt">0.0 L</span></div>
+          <div class="chip"><span class="dot" style="background:#8FA6D6"></span><span id="nightAmt">0.0 L</span></div>
+          <div class="spacer"></div>
+          <button id="priceHistBtn" class="histbtn" title="Price history">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8FA1C4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+          </button>
+          <div id="priceStatic" class="priceedit"><span style="font-size:12px;color:#B9C3DA;font-family:'IBM Plex Mono',monospace" id="priceLabel">&#8377;60/L</span></div>
+          <div id="priceEditing" style="display:none;align-items:center;gap:4px;">
+            <span style="font-size:12px;color:#8FA1C4;">&#8377;</span>
+            <input id="priceInput" inputmode="decimal">
+            <span style="font-size:11px;color:#8FA1C4;">/L</span>
+          </div>
+        </div>
+        <div class="payment-row">
+          <button id="paymentBtn" class="paymentbtn unpaid"></button>
+          <button id="paymentHistBtn" class="histbtn paymenthistbtn" title="Payment history">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8FA1C4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+          </button>
         </div>
       </div>
-      <div class="summary-row">
-        <div class="chip"><span class="dot" style="background:#C6922C"></span><span id="morningAmt">0.0 L</span></div>
-        <div class="chip"><span class="dot" style="background:#8FA6D6"></span><span id="nightAmt">0.0 L</span></div>
-        <div class="spacer"></div>
-        <button id="priceHistBtn" class="histbtn" title="Price history">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8FA1C4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+
+      <div class="exportrow">
+        <button id="exportBtn" class="exportbtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDEFF3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Excel</span>
         </button>
-        <div id="priceStatic" class="priceedit"><span style="font-size:12px;color:#B9C3DA;font-family:'IBM Plex Mono',monospace" id="priceLabel">&#8377;60/L</span></div>
-        <div id="priceEditing" style="display:none;align-items:center;gap:4px;">
-          <span style="font-size:12px;color:#8FA1C4;">&#8377;</span>
-          <input id="priceInput" inputmode="decimal">
-          <span style="font-size:11px;color:#8FA1C4;">/L</span>
-        </div>
       </div>
-      <div class="payment-row">
-        <button id="paymentBtn" class="paymentbtn unpaid"></button>
-      </div>
-    </div>
-
-    <div class="exportrow">
-      <button id="exportBtn" class="exportbtn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDEFF3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span>Excel</span>
-      </button>
-      <button id="calendarBtn" class="exportbtn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDEFF3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        <span>Calendar</span>
-      </button>
     </div>
   </div>
 
@@ -206,11 +289,29 @@
     <b>Install this as an app:</b> tap the Share icon in Safari's toolbar, then <b>Add to Home Screen</b>. It'll open full-screen with its own icon, just like a regular app.
   </div>
 
-  <div class="cal">
-    <div class="weekdays">
-      <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+  <div id="todayPage">
+    <div class="todaycard">
+      <div class="pickers">
+        <div class="picker">
+          <div class="picker-label">&#9728;&#65039;<span>Morning</span><span class="totaltag" id="todayMorningTotalTag"></span></div>
+          <div class="levels" id="todayMorningLevels"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="picker">
+          <div class="picker-label">&#127769;<span>Night</span><span class="totaltag" id="todayNightTotalTag"></span></div>
+          <div class="levels" id="todayNightLevels"></div>
+        </div>
+      </div>
     </div>
-    <div class="grid" id="calGrid"></div>
+  </div>
+
+  <div id="calendarPage" style="display:none">
+    <div class="cal">
+      <div class="weekdays">
+        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+      </div>
+      <div class="grid" id="calGrid"></div>
+    </div>
   </div>
 
   <div class="overlay" id="overlay"></div>
@@ -253,6 +354,61 @@
     </div>
   </div>
 
+  <div class="overlay" id="paymentHistOverlay"></div>
+  <div class="sheet" id="paymentHistSheet">
+    <div class="handle"></div>
+    <div class="sheet-head">
+      <span class="sheet-date">Payment History</span>
+      <button class="closebtn" id="paymentHistClose">&#10003;</button>
+    </div>
+    <div id="paymentHistList"></div>
+  </div>
+
+  <div class="overlay" id="backupOverlay"></div>
+  <div class="sheet" id="backupSheet">
+    <div class="handle"></div>
+    <div class="sheet-head">
+      <span class="sheet-date">Cross-Device Sync</span>
+      <button class="closebtn" id="backupClose">&#10003;</button>
+    </div>
+
+    <div id="syncSetupBlock">
+      <div class="backupinfo">
+        Connect both your devices to the same free Firebase database and they'll stay in sync automatically — no account or sign-in needed.
+      </div>
+      <ol class="syncsteps">
+        <li>Go to <b>console.firebase.google.com</b> and create a free project (any name works)</li>
+        <li>Click <b>Build &rarr; Realtime Database</b> in the left menu, create a database, and start it in <b>test mode</b></li>
+        <li>Click the gear icon &rarr; <b>Project settings</b> &rarr; scroll to "Your apps" &rarr; add a <b>Web app</b> &rarr; copy the whole <code>firebaseConfig</code> object it shows you, and paste it below</li>
+      </ol>
+      <textarea id="syncConfigInput" placeholder="const firebaseConfig = {&#10;  apiKey: &quot;...&quot;,&#10;  databaseURL: &quot;https://xxx-default-rtdb.firebaseio.com&quot;,&#10;  ...&#10;};"></textarea>
+      <button id="syncConnectBtn" class="backupbtn primary">Connect</button>
+    </div>
+
+    <div id="syncConnectedBlock" style="display:none">
+      <div class="sync-status-row"><span class="sync-status-dot" id="syncStatusDot"></span><span id="syncStatusText">Connected</span></div>
+      <div class="backupinfo">
+        This device is synced. Paste this exact same config into the Sync screen on your other iPhone or iPad to link it too — both will then update live.
+      </div>
+      <button id="syncDisconnectBtn" class="backupbtn secondary">Disconnect This Device</button>
+    </div>
+
+    <div class="syncdivider"><span>or back up manually</span></div>
+
+    <div class="backupactions">
+      <button id="backupSaveBtn" class="backupbtn secondary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16264A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Save Backup File
+      </button>
+      <button id="backupLoadBtn" class="backupbtn secondary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16264A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Load Backup File
+      </button>
+      <input type="file" id="backupFileInput" accept="application/json,.json" style="display:none">
+    </div>
+    <div class="backuptimestamp" id="backupTimestamp"></div>
+  </div>
+
   <div class="toast" id="toast"></div>
 
 </div>
@@ -270,6 +426,9 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
 
 </script>
 
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
 <script>
 (function(){
   var GOLD = "#C6922C", GOLD2="#D9A441", NIGHT = "#5D7BA6", INK = "#1B2233";
@@ -281,6 +440,11 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
   var payments = {}; // { 'YYYY-MM': {paid:true, date:'YYYY-MM-DD'} }
   var viewYear, viewMonth;
   var openDayKey = null;
+  var currentTab = "today";
+
+  /* ---- cross-device sync (Firebase Realtime Database, no sign-in) ---- */
+  var fb = null;
+  var syncEnabled = false;
 
   function pad(n){ return String(n).padStart(2,"0"); }
   function dkey(y,m,d){ return y+"-"+pad(m+1)+"-"+pad(d); }
@@ -302,9 +466,18 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
     } catch(err){ priceHistory = [{ date: "1970-01-01", price: 60 }]; }
     try { var pay = localStorage.getItem("milk-payments"); if(pay) payments = JSON.parse(pay); } catch(err){}
   }
-  function saveEntries(){ try { localStorage.setItem("milk-entries", JSON.stringify(entries)); } catch(err){} }
-  function savePriceHistory(){ try { localStorage.setItem("milk-price-history", JSON.stringify(priceHistory)); } catch(err){} }
-  function savePayments(){ try { localStorage.setItem("milk-payments", JSON.stringify(payments)); } catch(err){} }
+  function saveEntries(){
+    try { localStorage.setItem("milk-entries", JSON.stringify(entries)); } catch(err){}
+    if(syncEnabled && fb) fb.ref("entries").set(entries);
+  }
+  function savePriceHistory(){
+    try { localStorage.setItem("milk-price-history", JSON.stringify(priceHistory)); } catch(err){}
+    if(syncEnabled && fb) fb.ref("priceHistory").set(priceHistory);
+  }
+  function savePayments(){
+    try { localStorage.setItem("milk-payments", JSON.stringify(payments)); } catch(err){}
+    if(syncEnabled && fb) fb.ref("payments").set(payments);
+  }
 
   function priceForDate(dateKey){
     var sorted = priceHistory.slice().sort(function(a,b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
@@ -325,57 +498,45 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
     savePriceHistory();
   }
 
-  function bottleSVG(level, cap, selected){
-    var bodyTop=32, bodyBottom=94, bodyHeight=bodyBottom-bodyTop;
-    var frac = Math.min(level/2, 1);
-    var fillY = bodyBottom - frac*bodyHeight;
-    var clipId = "clip-"+cap.replace("#","")+"-"+level;
-    return '<svg viewBox="0 0 60 104" preserveAspectRatio="xMidYMid meet">' +
-      '<defs><clipPath id="'+clipId+'"><path d="M20 32 L20 22 Q20 18 24 18 L36 18 Q40 18 40 22 L40 32 Q48 36 48 46 L48 88 Q48 94 42 94 L18 94 Q12 94 12 88 L12 46 Q12 36 20 32 Z"/></clipPath></defs>' +
-      '<path d="M20 32 L20 22 Q20 18 24 18 L36 18 Q40 18 40 22 L40 32 Q48 36 48 46 L48 88 Q48 94 42 94 L18 94 Q12 94 12 88 L12 46 Q12 36 20 32 Z" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="1.5"/>' +
-      '<rect x="10" width="40" y="'+fillY+'" height="'+Math.max(bodyBottom-fillY,0)+'" fill="#FBF8F0" clip-path="url(#'+clipId+')"/>' +
-      '<rect x="15" y="40" width="4" height="48" rx="2" fill="#fff" opacity="0.55" clip-path="url(#'+clipId+')"/>' +
-      '<rect x="18" y="10" width="24" height="10" rx="3" fill="'+cap+'"/>' +
-      '<rect x="21" y="6" width="18" height="6" rx="2" fill="'+cap+'" opacity="0.85"/>' +
-      '</svg>';
-  }
-
   function slotTotal(e, slot){
     if(!e) return 0;
     var v = e[slot];
-    if(!v) return 0;
+    if(v === undefined || v === "none") return 0;
     if(typeof v === "number") return v;
-    var sum = 0;
-    for(var i=0;i<v.length;i++) sum += v[i];
-    return sum;
+    if(v && v.length){ var sum = 0; for(var i=0;i<v.length;i++) sum += v[i]; return sum; } // legacy multi-select data
+    return 0;
   }
-  function slotArr(e, slot){
-    if(!e) return [];
-    var v = e[slot];
-    if(!v) return [];
-    if(typeof v === "number") return [v];
-    return v.slice();
+  function slotLogged(e, slot){
+    if(!e) return false;
+    return e[slot] !== undefined;
+  }
+  function slotIsNoMilk(e, slot){
+    return !!e && e[slot] === "none";
   }
 
-  function renderSummary(){
-    var y=viewYear, m=viewMonth, n=daysInMonth(y,m);
+  function monthStats(y, m){
+    var n = daysInMonth(y,m);
     var morning=0, night=0, activeDays=0, cost=0;
     for(var d=1; d<=n; d++){
       var key = dkey(y,m,d);
       var e = entries[key];
       if(!e) continue;
       var mv = slotTotal(e,"morning"), nv = slotTotal(e,"night");
-      var hit = false;
-      if(mv){ morning += mv; hit = true; }
-      if(nv){ night += nv; hit = true; }
-      if(hit){ activeDays++; cost += (mv+nv) * priceForDate(key); }
+      var logged = slotLogged(e,"morning") || slotLogged(e,"night");
+      if(mv) morning += mv;
+      if(nv) night += nv;
+      if(logged){ activeDays++; cost += (mv+nv) * priceForDate(key); }
     }
-    var litres = morning+night;
-    document.getElementById("costAmt").textContent = cost.toFixed(0);
-    document.getElementById("litresAmt").textContent = litres.toFixed(1)+" L";
-    document.getElementById("daysAmt").textContent = activeDays+" days logged";
-    document.getElementById("morningAmt").textContent = morning.toFixed(1)+" L";
-    document.getElementById("nightAmt").textContent = night.toFixed(1)+" L";
+    return { morning: morning, night: night, activeDays: activeDays, cost: cost, litres: morning+night };
+  }
+
+  function renderSummary(){
+    var stats = monthStats(viewYear, viewMonth);
+    document.getElementById("costAmt").textContent = stats.cost.toFixed(0);
+    document.getElementById("litresAmt").textContent = stats.litres.toFixed(1)+" L";
+    document.getElementById("daysAmt").textContent = stats.activeDays+" days logged";
+    document.getElementById("morningAmt").textContent = stats.morning.toFixed(1)+" L";
+    document.getElementById("nightAmt").textContent = stats.night.toFixed(1)+" L";
     document.getElementById("priceLabel").textContent = "\u20B9"+currentPrice()+"/L";
     renderPayment();
   }
@@ -396,8 +557,7 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
     }
   }
 
-  function togglePayment(){
-    var mk = viewYear+"-"+pad(viewMonth+1);
+  function toggleMonthPayment(mk){
     var p = payments[mk];
     if(p && p.paid){
       delete payments[mk];
@@ -405,7 +565,70 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
       payments[mk] = { paid: true, date: todayKey() };
     }
     savePayments();
+  }
+
+  function togglePayment(){
+    var mk = viewYear+"-"+pad(viewMonth+1);
+    toggleMonthPayment(mk);
     renderPayment();
+  }
+
+  function allMonthKeys(){
+    var set = {};
+    Object.keys(entries).forEach(function(key){ set[key.slice(0,7)] = true; });
+    Object.keys(payments).forEach(function(mk){ set[mk] = true; });
+    set[viewYear+"-"+pad(viewMonth+1)] = true;
+    return Object.keys(set).sort().reverse();
+  }
+
+  function renderPaymentHistory(){
+    var list = document.getElementById("paymentHistList");
+    var months = allMonthKeys();
+    if(months.length === 0){
+      list.innerHTML = '<div class="payhistempty">No months logged yet</div>';
+      return;
+    }
+    list.innerHTML = "";
+    months.forEach(function(mk){
+      var parts = mk.split("-");
+      var y = parseInt(parts[0],10), m = parseInt(parts[1],10)-1;
+      var stats = monthStats(y, m);
+      var p = payments[mk];
+      var d = new Date(mk+"-01T00:00:00");
+      var label = d.toLocaleDateString("en-IN", { month: "long", year: "numeric" });
+
+      var row = document.createElement("div");
+      row.className = "payhistrow";
+      var costLine = stats.activeDays > 0
+        ? ("\u20B9"+stats.cost.toFixed(0)+" \u00B7 "+stats.activeDays+" days logged")
+        : "Nothing logged";
+      row.innerHTML =
+        '<div class="payhistmonth">' +
+          '<div class="payhistmonthname">'+label+'</div>' +
+          '<div class="payhistcost">'+costLine+'</div>' +
+        '</div>' +
+        '<button class="payhistchip '+((p&&p.paid)?"paid":"unpaid")+'">' +
+          (p && p.paid
+            ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Paid</span>'
+            : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg><span>Unpaid</span>') +
+        '</button>';
+      row.querySelector(".payhistchip").addEventListener("click", function(){
+        toggleMonthPayment(mk);
+        renderPaymentHistory();
+        if(mk === viewYear+"-"+pad(viewMonth+1)) renderPayment();
+      });
+      list.appendChild(row);
+    });
+  }
+
+  function openPaymentHistSheet(){
+    renderPaymentHistory();
+    document.getElementById("paymentHistOverlay").classList.add("open");
+    document.getElementById("paymentHistSheet").classList.add("open");
+  }
+  function closePaymentHistSheet(){
+    document.getElementById("paymentHistOverlay").classList.remove("open");
+    document.getElementById("paymentHistSheet").classList.remove("open");
   }
 
   function renderCalendar(){
@@ -428,8 +651,8 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
       var cell = document.createElement("button");
       cell.className = "daycell" + (isToday ? " today" : "");
       cell.innerHTML = '<span class="daynum'+(isToday?' today':'')+'">'+d+'</span><div class="dayflags">' +
-        (e && slotTotal(e,"morning") ? '<div class="flagdot" style="background:'+GOLD+'"></div>' : '') +
-        (e && slotTotal(e,"night") ? '<div class="flagdot" style="background:'+NIGHT+'"></div>' : '') +
+        (slotLogged(e,"morning") ? '<div class="flagdot" style="background:'+(slotIsNoMilk(e,"morning")?"#C7CCD6":GOLD)+'"></div>' : '') +
+        (slotLogged(e,"night") ? '<div class="flagdot" style="background:'+(slotIsNoMilk(e,"night")?"#C7CCD6":NIGHT)+'"></div>' : '') +
         '</div>';
       cell.addEventListener("click", (function(k){ return function(){ openSheet(k); }; })(key));
       grid.appendChild(cell);
@@ -437,65 +660,107 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
     renderSummary();
   }
 
-  function renderLevels(containerId, slot){
+  function renderLevels(containerId, slot, dayKey, tagId){
     var container = document.getElementById(containerId);
-    var entry = openDayKey ? entries[openDayKey] : null;
-    var arr = slotArr(entry, slot);
-    var total = arr.reduce(function(a,b){return a+b;}, 0);
-    var cap = slot === "morning" ? GOLD : NIGHT;
-    var html = "";
-    var opts = [0].concat(LEVELS);
-    opts.forEach(function(lv){
-      var selected = lv === 0 ? arr.length === 0 : arr.indexOf(lv) !== -1;
-      var inner;
-      if(lv === 0){
-        inner = '<div class="noneicon'+(selected?' selected':'')+'">' +
-          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="'+(selected?"#6B7280":"#C3C9D3")+'" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>';
-      } else {
-        inner = bottleSVG(lv, cap, selected);
-      }
-      html += '<button class="levelbtn'+(selected?' selected':'')+'" data-lv="'+lv+'" data-slot="'+slot+'">' +
-        inner + '<span class="levellabel'+(selected?' selected':'')+'">'+(lv===0?"&mdash;":lv+"L")+'</span></button>';
+    if(!container) return;
+    var entry = dayKey ? entries[dayKey] : null;
+    var noMilk = slotIsNoMilk(entry, slot);
+    var value = slotTotal(entry, slot);
+    var accent = slot === "morning" ? GOLD : NIGHT;
+    var accent2 = slot === "morning" ? GOLD2 : "#7C98C4";
+    var maxLv = LEVELS[LEVELS.length-1];
+
+    var stopsHtml = "";
+    LEVELS.forEach(function(lv){
+      var lit = !noMilk && value >= lv;
+      stopsHtml += '<div class="trackstop'+(lit?' lit':'')+'" data-lv="'+lv+'">'+lv+'L</div>';
     });
-    container.innerHTML = html;
-    Array.prototype.forEach.call(container.querySelectorAll(".levelbtn"), function(btn){
-      btn.addEventListener("click", function(){
-        var lv = parseFloat(btn.getAttribute("data-lv"));
-        var s = btn.getAttribute("data-slot");
-        setLevel(s, lv);
+    var pct = noMilk ? 0 : Math.min(value / maxLv, 1) * 100;
+
+    container.innerHTML =
+      '<div class="track'+(noMilk?' nomilk':'')+'">' +
+        '<div class="trackfill" style="width:'+pct+'%;background:linear-gradient(90deg,'+accent2+','+accent+');"></div>' +
+        '<div class="trackstops">'+stopsHtml+'</div>' +
+        '<div class="tracknomilklabel" style="display:'+(noMilk?'flex':'none')+';">No milk today</div>' +
+      '</div>' +
+      '<button class="nomilkbtn'+(noMilk?' active':'')+'">' +
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><line x1="6.5" y1="6.5" x2="17.5" y2="17.5"/></svg>' +
+        'No milk today' +
+      '</button>';
+
+    Array.prototype.forEach.call(container.querySelectorAll(".trackstop"), function(el){
+      el.addEventListener("click", function(){
+        var lv = parseFloat(el.getAttribute("data-lv"));
+        setLevel(dayKey, slot, (!noMilk && value === lv) ? 0 : lv);
       });
     });
-    var totalEl = document.getElementById(slot === "morning" ? "morningTotalTag" : "nightTotalTag");
-    if(totalEl) totalEl.textContent = total > 0 ? (total.toFixed(1)+"L") : "";
+    var noMilkBtn = container.querySelector(".nomilkbtn");
+    if(noMilkBtn){
+      noMilkBtn.addEventListener("click", function(){
+        setLevel(dayKey, slot, noMilk ? 0 : "none");
+      });
+    }
+
+    var totalEl = document.getElementById(tagId);
+    if(totalEl){
+      totalEl.className = "totaltag" + (noMilk ? " nomilk" : "");
+      totalEl.textContent = noMilk ? "No milk" : (value > 0 ? (value.toFixed(1)+"L") : "");
+    }
   }
 
-  function setLevel(slot, lv){
-    if(!openDayKey) return;
-    var e = entries[openDayKey] || {};
-    var arr = slotArr(e, slot);
+  function setLevel(dayKey, slot, lv){
+    if(!dayKey) return;
+    var e = entries[dayKey] || {};
     if(lv === 0){
-      arr = [];
+      delete e[slot];
     } else {
-      var idx = arr.indexOf(lv);
-      if(idx !== -1) arr.splice(idx, 1);
-      else { arr.push(lv); arr.sort(function(a,b){return a-b;}); }
+      e[slot] = lv; // a number (0.5/1/1.5/2) or the string "none"
     }
-    if(arr.length === 0) delete e[slot];
-    else e[slot] = arr;
-    if(!e.morning && !e.night){ delete entries[openDayKey]; }
-    else { entries[openDayKey] = e; }
+    if(e.morning === undefined && e.night === undefined){ delete entries[dayKey]; }
+    else { entries[dayKey] = e; }
     saveEntries();
-    renderLevels("morningLevels", "morning");
-    renderLevels("nightLevels", "night");
+    if(dayKey === todayKey()){
+      renderTodayPage();
+    }
+    if(dayKey === openDayKey){
+      renderLevels("morningLevels", "morning", dayKey, "morningTotalTag");
+      renderLevels("nightLevels", "night", dayKey, "nightTotalTag");
+    }
     renderCalendar();
+  }
+
+  function renderTodayPage(){
+    var key = todayKey();
+    var dt = new Date(key+"T00:00:00");
+    var dateEl = document.getElementById("todayDateLine");
+    if(dateEl) dateEl.textContent = dt.toLocaleDateString("en-IN", {weekday:"long", day:"numeric", month:"long"});
+    renderLevels("todayMorningLevels", "morning", key, "todayMorningTotalTag");
+    renderLevels("todayNightLevels", "night", key, "todayNightTotalTag");
+    var e = entries[key];
+    var total = slotTotal(e,"morning") + slotTotal(e,"night");
+    var litresEl = document.getElementById("todayLitresChip");
+    if(litresEl) litresEl.textContent = total.toFixed(1) + " L logged today";
+  }
+
+  function switchTab(tab){
+    currentTab = tab;
+    var isToday = tab === "today";
+    document.getElementById("todayHero").style.display = isToday ? "" : "none";
+    document.getElementById("calendarHero").style.display = isToday ? "none" : "";
+    document.getElementById("todayPage").style.display = isToday ? "" : "none";
+    document.getElementById("calendarPage").style.display = isToday ? "none" : "";
+    document.getElementById("tabTodayBtn").className = "tabbtn" + (isToday ? " active" : "");
+    document.getElementById("tabCalendarBtn").className = "tabbtn" + (isToday ? "" : " active");
+    if(isToday) renderTodayPage();
+    else renderCalendar();
   }
 
   function openSheet(key){
     openDayKey = key;
     var dt = new Date(key+"T00:00:00");
     document.getElementById("sheetDate").textContent = dt.toLocaleDateString("en-IN", {weekday:"long", day:"numeric", month:"long"});
-    renderLevels("morningLevels", "morning");
-    renderLevels("nightLevels", "night");
+    renderLevels("morningLevels", "morning", key, "morningTotalTag");
+    renderLevels("nightLevels", "night", key, "nightTotalTag");
     document.getElementById("overlay").classList.add("open");
     document.getElementById("sheet").classList.add("open");
   }
@@ -586,6 +851,9 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
   });
 
   document.getElementById("paymentBtn").addEventListener("click", togglePayment);
+  document.getElementById("paymentHistBtn").addEventListener("click", openPaymentHistSheet);
+  document.getElementById("paymentHistOverlay").addEventListener("click", closePaymentHistSheet);
+  document.getElementById("paymentHistClose").addEventListener("click", closePaymentHistSheet);
 
   // install hint: show once, only if not already installed / standalone
   var isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
@@ -657,72 +925,288 @@ break;case"<bookViews":;case"<bookViews>":;case"</bookViews>":break;case"<workbo
     }
   }
 
-  function icsEscape(s){
-    return String(s).replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n");
+  function backupPayload(){
+    return {
+      app: "milk-round",
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      entries: entries,
+      priceHistory: priceHistory,
+      payments: payments
+    };
   }
 
-  function exportToCalendar(){
-    var keys = Object.keys(entries).sort();
-    if(keys.length === 0){
-      showToast("No entries yet to add");
+  function markBackedUp(){
+    try { localStorage.setItem("milk-last-backup", new Date().toISOString()); } catch(err){}
+    renderBackupTimestamp();
+  }
+
+  function renderBackupTimestamp(){
+    var el = document.getElementById("backupTimestamp");
+    var iso;
+    try { iso = localStorage.getItem("milk-last-backup"); } catch(err){}
+    if(!iso){ el.textContent = "No backup saved yet"; return; }
+    var d = new Date(iso);
+    el.textContent = "Last backup saved " + d.toLocaleDateString("en-IN", { day:"numeric", month:"short" }) + " at " + d.toLocaleTimeString("en-IN", { hour:"2-digit", minute:"2-digit" });
+  }
+
+  function exportBackup(){
+    var payload = backupPayload();
+    var json = JSON.stringify(payload, null, 2);
+    var today = new Date();
+    var fname = "Milk-Backup-" + today.getFullYear() + "-" + pad(today.getMonth()+1) + "-" + pad(today.getDate()) + ".json";
+    var blob = new Blob([json], { type: "application/json" });
+    var file;
+    try { file = new File([blob], fname, { type: "application/json" }); } catch(err){}
+
+    function fallbackDownload(){
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = fname;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 3000);
+      showToast("Saved " + fname + " — send it to your other device");
+      markBackedUp();
+    }
+
+    if(navigator.canShare && file && navigator.canShare({ files: [file] })){
+      navigator.share({ files: [file], title: "Milk Tracker Backup" }).then(function(){
+        markBackedUp();
+      }).catch(function(err){
+        if(err && err.name === "AbortError") return;
+        fallbackDownload();
+      });
+    } else {
+      fallbackDownload();
+    }
+  }
+
+  function importBackupFromFile(file){
+    var reader = new FileReader();
+    reader.onload = function(){
+      var data;
+      try { data = JSON.parse(reader.result); } catch(err){ showToast("That file isn't a valid backup"); return; }
+      if(!data || typeof data !== "object" || !data.entries){ showToast("That file isn't a valid backup"); return; }
+      var ok = window.confirm("Load this backup? It will replace all milk entries, price history and payment records currently on this device.");
+      if(!ok) return;
+      entries = data.entries || {};
+      priceHistory = (data.priceHistory && data.priceHistory.length) ? data.priceHistory : priceHistory;
+      payments = data.payments || {};
+      saveEntries();
+      savePriceHistory();
+      savePayments();
+      renderCalendar();
+      renderSummary();
+      closeBackupSheet();
+      showToast("Backup loaded — this device is up to date");
+    };
+    reader.onerror = function(){ showToast("Couldn't read that file"); };
+    reader.readAsText(file);
+  }
+
+  /* ---- Firebase Realtime Database sync (paste-your-own-config, no sign-in) ---- */
+
+  function parseFirebaseConfigText(text){
+    var apiKeyIdx = text.indexOf("apiKey");
+    if(apiKeyIdx === -1) return { error: "no-apikey" };
+    var openIdx = text.lastIndexOf("{", apiKeyIdx);
+    if(openIdx === -1) return { error: "no-brace" };
+    var depth = 0, closeIdx = -1;
+    for(var i=openIdx; i<text.length; i++){
+      if(text[i] === "{") depth++;
+      else if(text[i] === "}"){ depth--; if(depth === 0){ closeIdx = i; break; } }
+    }
+    if(closeIdx === -1) return { error: "unmatched-brace" };
+    var objText = text.slice(openIdx, closeIdx+1);
+    var obj;
+    try { obj = new Function("return (" + objText + ");")(); }
+    catch(err){ return { error: "parse-failed", detail: err.message }; }
+    if(!obj || typeof obj !== "object" || !obj.apiKey) return { error: "no-apikey" };
+    if(!obj.databaseURL) return { error: "no-database-url" };
+    return { config: obj };
+  }
+
+  function seedIfEmpty(path, localValue){
+    return fb.ref(path).once("value").then(function(snap){
+      var val = snap.val();
+      if(val === null || val === undefined){
+        return fb.ref(path).set(localValue).then(function(){ return localValue; });
+      }
+      return val;
+    });
+  }
+
+  function attachOngoingListeners(){
+    fb.ref("entries").on("value", function(snap){
+      entries = snap.val() || {};
+      try { localStorage.setItem("milk-entries", JSON.stringify(entries)); } catch(err){}
+      renderCalendar();
+      if(currentTab === "today") renderTodayPage();
+    });
+    fb.ref("priceHistory").on("value", function(snap){
+      var v = snap.val();
+      if(v && v.length) priceHistory = v;
+      try { localStorage.setItem("milk-price-history", JSON.stringify(priceHistory)); } catch(err){}
+      renderCalendar();
+      if(currentTab === "today") renderTodayPage();
+    });
+    fb.ref("payments").on("value", function(snap){
+      payments = snap.val() || {};
+      try { localStorage.setItem("milk-payments", JSON.stringify(payments)); } catch(err){}
+      renderPayment();
+    });
+    fb.ref(".info/connected").on("value", function(snap){
+      updateSyncStatus(!!snap.val());
+    });
+  }
+
+  function updateSyncStatus(online){
+    var dot = document.getElementById("syncDot");
+    if(dot) dot.className = "syncdot" + (syncEnabled ? (online ? " on" : " off") : "");
+    var mdot = document.getElementById("syncStatusDot");
+    var mtext = document.getElementById("syncStatusText");
+    if(mdot) mdot.className = "sync-status-dot " + (online ? "on" : "off");
+    if(mtext) mtext.textContent = online ? "Connected — synced live" : "Connecting…";
+  }
+
+  function connectSync(config){
+    try {
+      if(typeof firebase === "undefined") throw new Error("Firebase library didn't load — check your internet connection and try again.");
+      if(!firebase.apps || !firebase.apps.length){ firebase.initializeApp(config); }
+      fb = firebase.database();
+    } catch(err){
+      console.error("Firebase init failed:", err);
+      showToast("Could not connect: " + (err && err.message ? err.message : "invalid config"));
       return;
     }
-    var now = new Date();
-    var stamp = now.getFullYear()+pad(now.getMonth()+1)+pad(now.getDate())+"T"+pad(now.getHours())+pad(now.getMinutes())+pad(now.getSeconds())+"Z";
-    var lines = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Milk Round//EN","CALSCALE:GREGORIAN"];
+    try { localStorage.setItem("milk-firebase-config", JSON.stringify(config)); } catch(err){}
+    syncEnabled = true;
+    showToast("Connecting…");
 
-    keys.forEach(function(key){
-      var e = entries[key];
-      var morning = slotTotal(e,"morning");
-      var night = slotTotal(e,"night");
-      var total = morning + night;
-      if(total <= 0) return;
-      var dayPrice = priceForDate(key);
-      var cost = total * dayPrice;
-      var ymd = key.replace(/-/g, "");
-      var nextDay = new Date(key + "T00:00:00");
-      nextDay.setDate(nextDay.getDate() + 1);
-      var ymdEnd = nextDay.getFullYear()+pad(nextDay.getMonth()+1)+pad(nextDay.getDate());
+    var localEntries = entries, localPriceHistory = priceHistory, localPayments = payments;
 
-      var titleParts = [];
-      if(morning) titleParts.push(morning + "L AM");
-      if(night) titleParts.push(night + "L PM");
-      var title = "\uD83E\uDD5B Milk " + titleParts.join(" + ");
-      var desc = "Total: " + total.toFixed(1) + "L at \u20B9" + dayPrice + "/L = \u20B9" + cost.toFixed(2);
+    Promise.all([
+      seedIfEmpty("entries", localEntries),
+      seedIfEmpty("priceHistory", localPriceHistory),
+      seedIfEmpty("payments", localPayments)
+    ]).then(function(results){
+      entries = results[0] || {};
+      priceHistory = (results[1] && results[1].length) ? results[1] : localPriceHistory;
+      payments = results[2] || {};
+      try {
+        localStorage.setItem("milk-entries", JSON.stringify(entries));
+        localStorage.setItem("milk-price-history", JSON.stringify(priceHistory));
+        localStorage.setItem("milk-payments", JSON.stringify(payments));
+      } catch(err){}
 
-      lines.push("BEGIN:VEVENT");
-      lines.push("UID:milkround-" + key + "@local");
-      lines.push("DTSTAMP:" + stamp);
-      lines.push("DTSTART;VALUE=DATE:" + ymd);
-      lines.push("DTEND;VALUE=DATE:" + ymdEnd);
-      lines.push("SUMMARY:" + icsEscape(title));
-      lines.push("DESCRIPTION:" + icsEscape(desc));
-      lines.push("TRANSP:TRANSPARENT");
-      lines.push("END:VEVENT");
+      attachOngoingListeners();
+      document.getElementById("syncSetupBlock").style.display = "none";
+      document.getElementById("syncConnectedBlock").style.display = "";
+      updateSyncStatus(true);
+
+      renderCalendar();
+      if(currentTab === "today") renderTodayPage();
+      showToast("Connected — this device is now synced");
+    }).catch(function(err){
+      syncEnabled = false;
+      fb = null;
+      console.error("Firebase sync failed:", err);
+      var detail = (err && err.message) ? err.message : "unknown error";
+      if(/permission/i.test(detail)){
+        showToast("Blocked by database rules — set them to allow read/write (see the setup steps)");
+      } else {
+        showToast("Connection failed: " + detail);
+      }
+      updateSyncStatus(false);
     });
-    lines.push("END:VCALENDAR");
-
-    var icsText = lines.join("\r\n");
-    var blob = new Blob([icsText], { type: "text/calendar;charset=utf-8" });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = "Milk-Round-Calendar.ics";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(function(){ URL.revokeObjectURL(url); }, 3000);
-    showToast("Saved .ics — open it to add to Calendar");
   }
 
+  function disconnectSync(){
+    if(fb){
+      try {
+        fb.ref("entries").off(); fb.ref("priceHistory").off(); fb.ref("payments").off(); fb.ref(".info/connected").off();
+      } catch(err){}
+    }
+    syncEnabled = false;
+    fb = null;
+    try { localStorage.removeItem("milk-firebase-config"); } catch(err){}
+    document.getElementById("syncSetupBlock").style.display = "";
+    document.getElementById("syncConnectedBlock").style.display = "none";
+    document.getElementById("syncConfigInput").value = "";
+    var dot = document.getElementById("syncDot");
+    if(dot) dot.className = "syncdot";
+    showToast("Sync disconnected — back to local-only storage on this device");
+  }
+
+  function tryAutoConnect(){
+    var saved;
+    try { saved = JSON.parse(localStorage.getItem("milk-firebase-config") || "null"); } catch(err){ saved = null; }
+    if(saved && saved.apiKey) connectSync(saved);
+  }
+
+  function openBackupSheet(){
+    renderBackupTimestamp();
+    if(syncEnabled){
+      document.getElementById("syncSetupBlock").style.display = "none";
+      document.getElementById("syncConnectedBlock").style.display = "";
+      updateSyncStatus(!!fb);
+    } else {
+      document.getElementById("syncSetupBlock").style.display = "";
+      document.getElementById("syncConnectedBlock").style.display = "none";
+    }
+    document.getElementById("backupOverlay").classList.add("open");
+    document.getElementById("backupSheet").classList.add("open");
+  }
+  function closeBackupSheet(){
+    document.getElementById("backupOverlay").classList.remove("open");
+    document.getElementById("backupSheet").classList.remove("open");
+  }
+
+  document.getElementById("backupOpenBtn").addEventListener("click", openBackupSheet);
+  document.getElementById("backupOverlay").addEventListener("click", closeBackupSheet);
+  document.getElementById("backupClose").addEventListener("click", closeBackupSheet);
+  document.getElementById("backupSaveBtn").addEventListener("click", exportBackup);
+  document.getElementById("backupLoadBtn").addEventListener("click", function(){
+    document.getElementById("backupFileInput").click();
+  });
+  document.getElementById("backupFileInput").addEventListener("change", function(e){
+    var f = e.target.files && e.target.files[0];
+    if(f) importBackupFromFile(f);
+    e.target.value = "";
+  });
+  document.getElementById("syncConnectBtn").addEventListener("click", function(){
+    var text = document.getElementById("syncConfigInput").value;
+    if(!text || !text.trim()){ showToast("Paste your Firebase config first"); return; }
+    var result = parseFirebaseConfigText(text);
+    if(result.error){
+      var msg = {
+        "no-apikey": "Couldn't find an apiKey — paste the full firebaseConfig object",
+        "no-brace": "Couldn't find the { ... } config object",
+        "unmatched-brace": "That config looks incomplete — check the braces",
+        "parse-failed": "Couldn't read that config — check it's valid",
+        "no-database-url": "Missing databaseURL — make sure you created a Realtime Database, not just Firestore"
+      }[result.error] || "Invalid config";
+      showToast(msg);
+      return;
+    }
+    connectSync(result.config);
+  });
+  document.getElementById("syncDisconnectBtn").addEventListener("click", disconnectSync);
+
   document.getElementById("exportBtn").addEventListener("click", exportToExcel);
-  document.getElementById("calendarBtn").addEventListener("click", exportToCalendar);
+
+  document.getElementById("tabTodayBtn").addEventListener("click", function(){ switchTab("today"); });
+  document.getElementById("tabCalendarBtn").addEventListener("click", function(){ switchTab("calendar"); });
 
   // init
   load();
   var t = new Date();
   viewYear = t.getFullYear(); viewMonth = t.getMonth();
-  renderCalendar();
+  switchTab("today");
+  tryAutoConnect();
 })();
 </script>
 </body>
